@@ -1,0 +1,25 @@
+M = 100; N = 20; K = 100;
+A = zeros(M, N);
+
+for n=1:N
+k = K*n;
+  for m = 1:M
+    x=rand(k,1);
+    y=rand(k,1);
+    A(m,n) = sum (x.*x + y.*y <= 1)/k;
+  end
+end
+
+% Promedio de A
+mA = mean(A)
+
+% Desviación estandar de A
+sdA=std(A)
+
+plot(A')
+plot(A', '.')
+
+hold on
+
+plot((1:N), mA)
+plot((1:N), mA + sdA)
