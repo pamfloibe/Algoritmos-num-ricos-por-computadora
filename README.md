@@ -1,1 +1,1 @@
-# Algoritmos-num-ricos-por-computadora
+# Algoritmos-numéricos-por-computadora
