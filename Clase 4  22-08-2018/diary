@@ -1,0 +1,61 @@
+f=@(x)x^2-5;
+f
+
+f =
+
+  <a href="matlab:helpPopup function_handle" style="font-weight:bold">function_handle</a> with value:
+
+    @(x)x^2-5
+
+f(3)
+
+ans =
+
+     4
+
+%%Calcular el simbólico
+fs=sym(f)
+ 
+fs =
+ 
+x^2 - 5
+ 
+fsp = diff(fs)
+ 
+fsp =
+ 
+2*x
+ 
+fp=matlabFunction(fsp)
+
+fp =
+
+  <a href="matlab:helpPopup function_handle" style="font-weight:bold">function_handle</a> with value:
+
+    @(x)x.*2.0
+
+clc
+raizNewton(f, 1, 1e-3)
+
+ans =
+
+    2.2361
+
+raizNewton(f, -1, 1e-3)
+
+ans =
+
+   -2.2361
+
+raizNewton(@(x)x^3-5, -1, 1e-3)
+
+ans =
+
+    1.7100
+
+ans*ans*ans
+
+ans =
+
+    5.0000
+
