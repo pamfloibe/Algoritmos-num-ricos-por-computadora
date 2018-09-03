@@ -1,0 +1,33 @@
+tstFiguraCompuesta
+Elapsed time is 19.313350 seconds.
+tstFiguraCompuesta
+Elapsed time is 19.582497 seconds.
+tstFiguraCompuesta
+Elapsed time is 19.501829 seconds.
+hist(mA; M=20)
+ hist(mA; M=20)
+        
+{Error: Invalid expression. When calling a function or indexing a variable, use parentheses. Otherwise, check for mismatched delimiters.
+} 
+hist(ma: M=20)
+ hist(ma: M=20)
+           
+{Error: Incorrect use of '=' operator. To assign a value to a variable, use '='. To compare values for equality, use '=='.
+} 
+hist(M, 20)
+hist(mA:M, 20)
+hist(mA,M:20)
+{Undefined function or variable 'numBars'.
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('barV6', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\specgraph\private\barV6.m', 53)" style="font-weight:bold">barV6</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\specgraph\private\barV6.m',53,0)">line 53</a>)
+    if size(xx,2)*numBars > 150
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('bar', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\specgraph\bar.m', 86)" style="font-weight:bold">bar</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\specgraph\bar.m',86,0)">line 86</a>)
+            h = barV6(hPar,args{:});
+
+Error in <a href="matlab:matlab.internal.language.introspective.errorDocCallback('hist', 'C:\Program Files\MATLAB\R2018a\toolbox\matlab\datafun\hist.p', 151)" style="font-weight:bold">hist</a> (<a href="matlab: opentoline('C:\Program Files\MATLAB\R2018a\toolbox\matlab\datafun\hist.p',151,0)">line 151</a>)
+     histPatch =  bar(x,nn,[miny maxy],'hist');
+} 
+hist(mA, 20)
+IdleTimeout has been reached.
+Parallel pool using the 'local' profile is shutting down.
