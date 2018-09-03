@@ -93,6 +93,17 @@ porcEnsayos = D/M;
 
 
 error = sA;
-vr_apartir_de_vo = mA;
+vo = mA;
 
-er = error ./ vr_apartir_de_vo
+%buscar el indice del numero en jotas donde sea menor a tu error
+% en este caso queremos algo < 0.5, este indice sera = j
+jotas = sA./mA
+
+% tomas alpha como 100 - confianza
+% correr lo siguiente tomando el jota anterior
+
+%int_min =  mA(j) - ((sA(j).*icdf('Normal',1-(alpha/200),0,1))/(j*K)) 
+%int_max =  mA(j) + ((sA(j).*icdf('Normal',1-(alpha/200),0,1))/(j*K))
+
+%el intervalo de confianza sera
+%[int_min; int_max]
