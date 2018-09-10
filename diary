@@ -1,0 +1,38 @@
+1 = linspace(-2,2,300); %%definimos lambda
+ 1 = linspace(-2,2,300); %%definimos lambda
+   
+{Error: Incorrect use of '=' operator. To assign a value to a variable, use '='. To compare values for equality, use '=='.
+} 
+l = linspace(-2,2,300); %definimos lambda
+valEv = exp  = exp(l) + (0.435./l).*(exp(l)-1);
+ valEv = exp  = exp(l) + (0.435./l).*(exp(l)-1);
+              
+{Error: Incorrect use of '=' operator. To assign a value to a variable, use '='. To compare values for equality, use '=='.
+} 
+valEv = exp(l) + (0.435./l).*(exp(l)-1);
+figure();
+plot(1, valEv, 'r-')
+hold on
+hold off
+plot(l, valEv, 'r-')
+hold on
+line([-2 2], [1.564 1.564], 'Color', 'k')
+clc
+valEc = @(l) exp(l)+(0.435./l).*(exp(l)-l);
+valEc(1.05)
+
+ans =
+
+    3.6065
+
+cambioSigno
+{Undefined function or variable 'cambioSigno'.
+} 
+cambioSigno
+{Error using <a href="matlab:matlab.internal.language.introspective.errorDocCallback('cambioSigno', 'C:\Users\sdist\Desktop\Algoritmos-numericos-por-computadora\Clase 9 10-09-2018\cambioSigno.m', 10)" style="font-weight:bold">cambioSigno</a> (<a href="matlab: opentoline('C:\Users\sdist\Desktop\Algoritmos-numericos-por-computadora\Clase 9 10-09-2018\cambioSigno.m',10,0)">line 10</a>)
+Se necesita al menos 3 argumentos de entrada
+} 
+intervalos = cambioSigno(valEc, -2, 2, 15);
+Se encontraron 1 intervalos donde hubo cambio de signo.
+intervalos = cambioSigno(valEc, -2, 2, 15);
+Se encontraron 1 intervalos donde hubo cambio de signo.
