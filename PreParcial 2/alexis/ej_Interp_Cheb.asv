@@ -1,0 +1,50 @@
+nPoints=8;
+fx=@(x) sin(x)./x;
+x=linspace(-1,1,nPoints);
+y=fx(x);
+
+T=matCoefCheb(nPoints-1);
+A=evalCheb(T,x);
+A=A';
+c=inv(A)*y';
+
+xqc=linspace(-1,1,200)';
+fx=fx(xqc);
+
+yCheb=zeros(length(xqc),nPoints);
+
+for k=1:length(xqc)
+    t_en_x=evalCheb(T,xqc(k));
+    for j=1:nPoints
+        yCheb(k,j)=t_en_x(1:j)'*c(1:j);
+    end
+end 
+
+%comparamos con Lagrange
+% yLag=zeros(length(xqc),1);
+% for k=1:length(xqc);
+%     yLag(k)=interp_Lagrange(x,y,xqc(k));
+% end
+
+figure()
+plot(xqc,fx,'r')
+hold on
+for i=1:nPoints
+    s=sprintf('Aproximación %1d',i); 
+    plot(xqc,yCheb(:,i)); 
+    legend(s);
+    hold on
+end
+%hold on
+%plot(x,y,'ro','MarkerSize',12)
+%plot(xqc,yCheb(:,nPoints),'k--')
+%plot(xqc,yLag,'m-.')
+%legend('fx','pts Interp','Chebyshev')
+
+figure()
+plot(xqc,abs(fx-yCheb(:,nPoints)),'ro')
+hold on
+%plot(xqc,abs(fx-yLag),'bs')
+legend('Err_Cheb')
+xlabel('x')
+ylabel('1/(1+25x^2)')

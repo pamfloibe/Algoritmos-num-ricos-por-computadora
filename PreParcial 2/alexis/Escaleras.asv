@@ -1,0 +1,23 @@
+%Las escalubrias
+%Ec carac:
+%x-c(1./ta)
+%Como es un problema físico el ancho del
+%pasillo donde se cruzan las escaleras es menor al largo de la escalera más
+%chica, además de ser positiva. Por lo tanto sólo es necesario hacer una
+%inspección en el intervalo +-max(a,b). Con una inspección gráfica podemos
+%ver qué valores tienen sentido físico. Ya que la raíz no puede ser mayor a
+%min(a,b)
+close all;
+clear all;
+b=30;
+a=20;
+c=15;
+x=[-b:.1:b];
+fx=@(x)x.^4-2*x.^4*c^2.*((a^2-x.^2).^-1+(b^2-x.^2).^-1)+c^4*x.^4.*((a^2-x.^2).^-1+(b^2-x.^2).^-1).^2-4*c^4*x.^4.*(((a^2-x.^2).^-1).*((b^2-x.^2).^-1));
+plot(x,fx(x))
+hold on
+grid on
+min=input('Valor minimo: ');
+max=input('Valor máximo: ');
+largo=raizBiseccion(fx,min,max,1e-10);
+
