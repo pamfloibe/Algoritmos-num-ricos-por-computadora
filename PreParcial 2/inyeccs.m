@@ -19,6 +19,7 @@ fs = cell(nIny, length(tiempo));
 hold on;
 plot(tiempo, F{1}(tiempo, A(1,1)));
 
+
 for i= 1:length(tiempo)
     fs{1,i} = str2func(sprintf('%s%d','@()',F{1}(tiempo(i), A(1,1))));
 end
@@ -26,16 +27,20 @@ end
 
 ct = @(t,a)a.*t.*exp((-t)/5);
 
-for i=2:3
-    
+for i=2:2
+    z = cell(1, length(tiempo));
+    z = fs(i-1, :);
     %F{i} = @(t, a)(a.*(t - tmin{1,i-1}).*exp((-(t - tmin{1,i-1}))/5)) + F{i-1}(t, A(1,1));
-    F{i} = @(t,a)ct((t-tmin{1,i-1}),a) + F{i-1}(t, A(1,i-1));
+    F{i} = @(t,a)ct((t-tmin{1,i-1}),a) + F{i-1}(t, A(1,i-1)); %%Obtiene la función de la siguiente inyección
     %F{i} = @(t,a)ct((t-tmin{1,i-1}),a) + fs{i-1, t}();
+    %F{i} = @(t,a)ct((t-tmin{1,i-1}),a);
     df = diff(sym(F{i}));
     tmax{1,i} = solve(df == 0, t);
     A(1,i) = solve(sym(F{i}(tmax{1,i},a)) == cmax, a);
-    ftmin = @(t)F{i}(t,A(1,i))-cmin;
-    tmin{1,i} = GNR(ftmin, tmin{i-1}+5 , 1e-10);
+    tmax{1,i} = matlabFunction(tmax{1,i});
+    tmax{1,i} = tmax{1,i}(A(1, i)) + tmin{1,i-1};
+    ftmin = @(t)F{i}(t,A(1,i))-cmin; %%Ver en qué punto se llega a cmin
+    tmin{1,i} = GNR(ftmin, tmin{1,i-1}*1.4 , 1e-10) + tmin{1,i-1};
     hold on;
     plot(tiempo+tmin{1,i}, F{i}(tiempo, A(1,i)));
 end
