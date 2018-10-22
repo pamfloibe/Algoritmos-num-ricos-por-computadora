@@ -20,20 +20,26 @@ hold on;
 plot(tiempo, F{1}(tiempo, A(1,1)));
 
 
-for i= 1:length(tiempo)
-    fs{1,i} = str2func(sprintf('%s%d','@()',F{1}(tiempo(i), A(1,1))));
-end
+% for i= 1:length(tiempo)
+%     fs{1,i} = str2func(sprintf('%s%d','@()',F{1}(tiempo(i), A(1,1))));
+% end
 %fss = @(t, i)fs(i, t);
 
 ct = @(t,a)a.*t.*exp((-t)/5);
 
 for i=2:2
-    z = cell(1, length(tiempo));
-    z = fs(i-1, :);
+%     z = cell(1, length(tiempo));
+%     z = fs(i-1, :);
+
     %F{i} = @(t, a)(a.*(t - tmin{1,i-1}).*exp((-(t - tmin{1,i-1}))/5)) + F{i-1}(t, A(1,1));
     F{i} = @(t,a)ct((t-tmin{1,i-1}),a) + F{i-1}(t, A(1,i-1)); %%Obtiene la función de la siguiente inyección
+    %%La forma de solucionarlo es encontrar como sustituir + F{i-1}(t, A(1,i-1));
+    %%por z{1, t} para sustituir el valor de la funcion anterior como
+    %%constante enlugar de una funcion de (t,a);
+    
     %F{i} = @(t,a)ct((t-tmin{1,i-1}),a) + fs{i-1, t}();
     %F{i} = @(t,a)ct((t-tmin{1,i-1}),a);
+    
     df = diff(sym(F{i}));
     tmax{1,i} = solve(df == 0, t);
     A(1,i) = solve(sym(F{i}(tmax{1,i},a)) == cmax, a);
