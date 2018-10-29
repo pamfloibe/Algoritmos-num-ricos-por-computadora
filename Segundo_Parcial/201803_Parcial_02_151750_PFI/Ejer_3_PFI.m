@@ -10,7 +10,7 @@ sueldos = readtable('sueldos.csv');
 %sdo = 80000;
 
 % Hacer un arreglo de sueldos
-arrSdo= csvread("sueldos.csv",1,1);
+arrSdo= csvread('sueldos.csv',1,1);
 arrNvoSdo = arrSdo;
 
 for i=1 :length(arrSdo)
