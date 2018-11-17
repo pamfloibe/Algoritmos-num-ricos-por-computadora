@@ -1,0 +1,44 @@
+% Ejercicio 1:
+% Obtener la distancia entre los dos puntos donde se intersectan los círculos
+%     CA : C=(1,1); r=2
+%     CB : C=(2,3); r=3
+
+%Obtener los puntos de intersección:
+
+%Fórmula del círculo: (x-xo)^2 + (y-yo)^2 = r^2
+
+centroA = [1,1];
+aX = centroA(1);
+aY = centroA(2);
+aR = 2;
+
+centroB = [2,3];
+bX = centroB(1);
+bY = centroB(2);
+bR = 3;
+
+%Obtenemos la función a partir de despejar x o y
+%Se deben obtener dos puntos, los cuales se obtienen a partir de las raices
+%positivas y negativas :)
+
+%Despejando x:
+
+%Función Punto 1:
+f1 = @(x) ( (aY + sqrt((aR^2) - (x - aX)^2)) - (bY - sqrt((bR^2) - (x - bX)^2)) );
+
+%Función Punto 2:
+f2 = @(x) ( (aY - sqrt((aR^2) - (x - aX)^2)) - (bY - sqrt((bR^2) - (x - bX)^2)) );
+
+%Puntos x de cada uno
+p1x = real(raizPorNewton(f1,-0.5,0.00001,1000));
+p2x = real(raizPorNewton(f2,2,0.00001,1000));
+
+%Obtener puntos y de cada uno sustituyendo en la ecuación
+p1y = aY + sqrt( (aR^2) - (p1x - aX)^2 );
+p2y = bY - sqrt( (bR^2) - (p2x - bX)^2 );
+
+
+%%Obtener la distancia entre dos puntos
+%Fórmula de la distancia: d = sqrt( (x2-x1)^2 + (y2-y1)^2 )
+
+d = sqrt( (p2x-p1x)^2 + (p2y-p1y)^2 );
